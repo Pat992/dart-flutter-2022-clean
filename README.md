@@ -1,1 +1,2 @@
-# dart-flutter-2022-clean
+# Dart & Flutter - Zero to Mastery [2022] + Clean Architecture
+Udemy course
