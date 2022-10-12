@@ -10,7 +10,9 @@ class RowExpandedExample extends StatelessWidget {
       children: <Widget>[
         Container(color: Colors.yellow, width: 50, height: 100),
         const SizedBox(width: 10),
-        Expanded(child: Container(color: Colors.green, height: 100)),
+        Expanded(flex: 2, child: Container(color: Colors.green, height: 100)),
+        const SizedBox(width: 10),
+        Expanded(flex: 1, child: Container(color: Colors.red, height: 100)),
         const SizedBox(width: 10),
         Container(color: Colors.yellow, width: 50, height: 100),
       ],
