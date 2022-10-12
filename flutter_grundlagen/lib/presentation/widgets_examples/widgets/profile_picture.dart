@@ -39,7 +39,7 @@ class ProfilePicture extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
+                    SelectableText(
                       'Hardly a human',
                       style: TextStyle(
                         fontSize: 12,

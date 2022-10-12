@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/container_text_example.dart';
+import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/custom_button.dart';
 import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/media_query_example.dart';
 import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/page_view_example.dart';
 import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/profile_picture.dart';
@@ -24,18 +25,45 @@ class WidgetsExamplesPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
-            children: const <Widget>[
-              ContainerTextExample(),
-              SizedBox(height: 30),
-              RowExpandedExample(),
-              SizedBox(height: 30),
-              ProfilePicture(),
-              SizedBox(height: 30),
-              RectImage(),
-              SizedBox(height: 30),
-              MediaQueryExample(),
-              SizedBox(height: 30),
-              PageViewExample(),
+            children: <Widget>[
+              const ContainerTextExample(),
+              const SizedBox(height: 30),
+              const RowExpandedExample(),
+              const SizedBox(height: 30),
+              const ProfilePicture(),
+              const SizedBox(height: 30),
+              const RectImage(),
+              const SizedBox(height: 30),
+              const MediaQueryExample(),
+              const SizedBox(height: 30),
+              const PageViewExample(),
+              const SizedBox(height: 30),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.home),
+                hoverColor: Colors.yellow,
+                splashColor: Colors.orange,
+              ),
+              const SizedBox(height: 30),
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'It is I, the Text-Button!!!',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const SizedBox(height: 30),
+              CustomButton(
+                onPressed: () => print('Custom button pressed'),
+                text: 'First Button',
+                btnColor: Colors.blue[200]!,
+              ),
+              const SizedBox(height: 30),
+              CustomButton(
+                btnColor: Colors.yellow,
+                onPressed: () => print('Gaga Bubu'),
+                text: 'Gaga Button',
+              ),
             ],
           ),
         ),
