@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/container_text_example.dart';
 
@@ -14,7 +16,29 @@ class WidgetsExamplesPage extends StatelessWidget {
         leading: const Icon(Icons.home),
         title: const Text('Widgets Example'),
       ),
-      body: const ContainerTextExample(),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          child: Column(
+            children: <Widget>[
+              const ContainerTextExample(),
+              const SizedBox(height: 10),
+              Container(
+                color: Colors.yellow,
+                //width: 100,
+                height: 100,
+              ),
+              const SizedBox(height: 10),
+              Container(
+                color: Colors.green,
+                //width: 100,
+                height: 100,
+              ),
+              const SizedBox(height: 10),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
