@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_grundlagen/presentation/counter_app/counter_app_page.dart';
+import 'package:flutter_grundlagen/presentation/theme_animation/theme_animation_page.dart';
 import 'package:flutter_grundlagen/presentation/widgets_examples/widgets_examples_page.dart';
 
 class RootWidget extends StatefulWidget {
@@ -21,6 +22,7 @@ class _RootWidgetState extends State<RootWidget> {
         children: const <Widget>[
           WidgetsExamplesPage(),
           CounterAppPage(),
+          ThemeAnimationPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -39,6 +41,10 @@ class _RootWidgetState extends State<RootWidget> {
           BottomNavigationBarItem(
             icon: Icon(Icons.calculate),
             label: 'Counter App',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.color_lens),
+            label: 'Theme',
           ),
         ],
       ),
