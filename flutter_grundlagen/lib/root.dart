@@ -30,9 +30,9 @@ class _RootWidgetState extends State<RootWidget> {
           _index = index;
         }),
         currentIndex: _index,
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.white,
-        backgroundColor: Colors.blue,
+        // unselectedItemColor: Colors.grey,
+        // selectedItemColor: Colors.white,
+        // backgroundColor: Colors.blue,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.star),

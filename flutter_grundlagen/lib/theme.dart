@@ -16,6 +16,7 @@ class AppTheme {
   static final Color _appbarColorDark = Colors.blueGrey.shade800;
 
   static const Color _iconColor = Colors.white;
+  static final Color _iconColorUnselected = Colors.grey.shade500;
 
   static const TextStyle _lightHeadingText = TextStyle(
     color: _lightTextColorPrimary,
@@ -54,6 +55,11 @@ class AppTheme {
       ),
     ),
     bottomAppBarColor: _appbarColorLight,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: _appbarColorLight,
+      selectedItemColor: _iconColor,
+      unselectedItemColor: _iconColorUnselected,
+    ),
     colorScheme: ColorScheme.light(
       primary: _lightPrimaryColor,
       onPrimary: _lightOnPrimaryColor,
@@ -72,6 +78,11 @@ class AppTheme {
       ),
     ),
     bottomAppBarColor: _appbarColorDark,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: _appbarColorDark,
+      selectedItemColor: _iconColor,
+      unselectedItemColor: _iconColorUnselected,
+    ),
     colorScheme: ColorScheme.dark(
       primary: _darkPrimaryColor,
       onPrimary: _darkOnPrimaryColor,
