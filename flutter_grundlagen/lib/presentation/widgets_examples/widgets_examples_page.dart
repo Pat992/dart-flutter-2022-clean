@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/container_text_example.dart';
+import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/row_expanded_example.dart';
 
 class WidgetsExamplesPage extends StatelessWidget {
   const WidgetsExamplesPage({Key? key}) : super(key: key);
@@ -18,21 +19,10 @@ class WidgetsExamplesPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
-            children: <Widget>[
-              const ContainerTextExample(),
-              const SizedBox(height: 10),
-              Container(
-                color: Colors.yellow,
-                //width: 100,
-                height: 100,
-              ),
-              const SizedBox(height: 10),
-              Container(
-                color: Colors.green,
-                //width: 100,
-                height: 100,
-              ),
-              const SizedBox(height: 10),
+            children: const <Widget>[
+              ContainerTextExample(),
+              SizedBox(height: 10),
+              RowExpandedExample()
             ],
           ),
         ),
