@@ -31,7 +31,7 @@ class _RootWidgetState extends State<RootWidget> {
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.white,
         backgroundColor: Colors.blue,
-        items: <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.star),
             label: 'Examples',
