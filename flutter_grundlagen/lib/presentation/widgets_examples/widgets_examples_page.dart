@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/container_text_example.dart';
 
 class WidgetsExamplesPage extends StatelessWidget {
   const WidgetsExamplesPage({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class WidgetsExamplesPage extends StatelessWidget {
         leading: const Icon(Icons.home),
         title: const Text('Widgets Example'),
       ),
-      body: const Center(),
+      body: const ContainerTextExample(),
     );
   }
 }
