@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_grundlagen/presentation/navigation_examples/screen_one.dart';
+import 'package:flutter_grundlagen/presentation/navigation_examples/screen_two.dart';
 import 'package:flutter_grundlagen/root.dart';
 
 void main() {
@@ -10,9 +12,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: RootWidget(),
+      routes: <String, WidgetBuilder>{
+        '/': (BuildContext context) => const RootWidget(),
+        '/screen1': (BuildContext context) => const ScreenOne(),
+        '/screen2': (BuildContext context) => const ScreenTwo(),
+      },
     );
   }
 }

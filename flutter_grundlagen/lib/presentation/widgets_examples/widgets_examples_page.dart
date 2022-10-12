@@ -54,8 +54,8 @@ class WidgetsExamplesPage extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               CustomButton(
-                onPressed: () => print('Custom button pressed'),
-                text: 'First Button',
+                onPressed: () => Navigator.of(context).pushNamed('/screen1'),
+                text: 'Go to Screen 1',
                 btnColor: Colors.blue[200]!,
               ),
               const SizedBox(height: 30),
