@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/container_text_example.dart';
+import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/media_query_example.dart';
 import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/profile_picture.dart';
 import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/rect_image.dart';
 import 'package:flutter_grundlagen/presentation/widgets_examples/widgets/row_expanded_example.dart';
@@ -17,18 +18,21 @@ class WidgetsExamplesPage extends StatelessWidget {
         leading: const Icon(Icons.home),
         title: const Text('Widgets Example'),
       ),
-      body: Center(
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             children: const <Widget>[
               ContainerTextExample(),
-              SizedBox(height: 10),
+              SizedBox(height: 30),
               RowExpandedExample(),
-              SizedBox(height: 10),
+              SizedBox(height: 30),
               ProfilePicture(),
-              SizedBox(height: 10),
+              SizedBox(height: 30),
               RectImage(),
+              SizedBox(height: 30),
+              MediaQueryExample(),
             ],
           ),
         ),
