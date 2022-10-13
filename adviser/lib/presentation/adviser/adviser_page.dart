@@ -1,12 +1,16 @@
+import 'package:adviser/application/adviser/adviser_bloc.dart';
+import 'package:adviser/presentation/adviser/widgets/advise_field.dart';
 import 'package:adviser/presentation/adviser/widgets/custom_button.dart';
 import 'package:adviser/presentation/adviser/widgets/error_message.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AdviserPage extends StatelessWidget {
   const AdviserPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final adviserBloc = AdviserBloc();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -17,24 +21,32 @@ class AdviserPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 50.0),
           child: Column(
             children: <Widget>[
-              const Expanded(
+              Expanded(
                 child: Center(
-                  // child: Text(
-                  //   'Your advise is waiting!',
-                  //   style: Theme.of(context).textTheme.headline1,
-                  // ),
-                  // child: AdviseField(
-                  //   advise:
-                  //       'Get advise test sad dfgfdg aclj fhfdgdfg asdalk rgdfg',
-                  // ),
-                  child: ErrorMessage(),
+                  child: BlocBuilder<AdviserBloc, AdviserState>(
+                    bloc: adviserBloc,
+                    builder: (context, state) {
+                      if (state is AdviserInitial) {
+                        return Text('Your advise is waiting!',
+                            style: Theme.of(context).textTheme.headline1);
+                      } else if (state is AdviserStateLoading) {
+                        return CircularProgressIndicator(
+                            color: Theme.of(context).colorScheme.secondary);
+                      } else if (state is AdviserStateLoaded) {
+                        return AdviseField(advise: state.advise);
+                      }
+                      return const ErrorMessage();
+                    },
+                  ),
                 ),
               ),
               SizedBox(
                 height: 200,
                 child: Center(
                   child: CustomButton(
-                    onTap: () {},
+                    onTap: () {
+                      adviserBloc.add(AdviserRequestedEvent());
+                    },
                   ),
                 ),
               ),
