@@ -66,6 +66,7 @@ class AppTheme {
       primaryContainer: _lightPrimaryVariantColor,
     ),
     textTheme: _lightTextTheme,
+    primaryColor: _lightPrimaryColor,
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -84,10 +85,14 @@ class AppTheme {
       unselectedItemColor: _iconColorUnselected,
     ),
     colorScheme: ColorScheme.dark(
+      background: _darkPrimaryColor,
+      secondary: _darkPrimaryColor,
       primary: _darkPrimaryColor,
       onPrimary: _darkOnPrimaryColor,
-      primaryContainer: _darkPrimaryVariantColor,
+      primaryContainer: _darkPrimaryColor,
+      secondaryContainer: _darkPrimaryVariantColor,
     ),
+    primaryColor: _darkPrimaryColor,
     textTheme: _darkTextTheme,
   );
 }
