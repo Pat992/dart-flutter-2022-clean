@@ -1,3 +1,5 @@
+import 'package:adviser/presentation/adviser/adviser_page.dart';
+import 'package:adviser/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,9 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: AppTheme.darkTheme,
       title: 'Adviser',
-      home: Placeholder(),
+      home: const AdviserPage(),
     );
   }
 }
