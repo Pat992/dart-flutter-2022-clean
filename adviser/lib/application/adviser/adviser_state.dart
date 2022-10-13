@@ -9,8 +9,10 @@ class AdviserStateLoading extends AdviserState {}
 
 class AdviserStateLoaded extends AdviserState {
   final String advise;
-
   AdviserStateLoaded({required this.advise});
 }
 
-class AdviserStateError extends AdviserState {}
+class AdviserStateError extends AdviserState {
+  final String errorMessage;
+  AdviserStateError({required this.errorMessage});
+}
