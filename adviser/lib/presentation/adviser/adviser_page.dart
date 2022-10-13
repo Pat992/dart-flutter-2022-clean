@@ -10,7 +10,6 @@ class AdviserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final adviserBloc = AdviserBloc();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -24,7 +23,9 @@ class AdviserPage extends StatelessWidget {
               Expanded(
                 child: Center(
                   child: BlocBuilder<AdviserBloc, AdviserState>(
-                    bloc: adviserBloc,
+                    // With ..add, you can execute the event right on loaded
+                    bloc: BlocProvider.of<AdviserBloc>(context)
+                      ..add(AdviserRequestedEvent()),
                     builder: (context, state) {
                       if (state is AdviserInitial) {
                         return Text('Your advise is waiting!',
@@ -44,9 +45,9 @@ class AdviserPage extends StatelessWidget {
                 height: 200,
                 child: Center(
                   child: CustomButton(
-                    onTap: () {
-                      adviserBloc.add(AdviserRequestedEvent());
-                    },
+                    onTap: () =>
+                        BlocProvider.of<AdviserBloc>(context, listen: false)
+                            .add(AdviserRequestedEvent()),
                   ),
                 ),
               ),
