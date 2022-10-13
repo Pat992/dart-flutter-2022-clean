@@ -9,9 +9,9 @@ part 'adviser_event.dart';
 part 'adviser_state.dart';
 
 class AdviserBloc extends Bloc<AdviserEvent, AdviserState> {
-  final useCases = AdviserUseCases();
+  final AdviserUseCases useCases;
 
-  AdviserBloc() : super(AdviserInitial()) {
+  AdviserBloc({required this.useCases}) : super(AdviserInitial()) {
     on<AdviserRequestedEvent>((event, emit) async {
       emit(AdviserStateLoading());
       try {

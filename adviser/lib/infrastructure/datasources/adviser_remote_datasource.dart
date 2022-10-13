@@ -12,7 +12,9 @@ abstract class AdviserRemoteDatasource {
 }
 
 class AdviserRemoteDatasourceImpl implements AdviserRemoteDatasource {
-  final http.Client client = http.Client();
+  final http.Client client;
+
+  AdviserRemoteDatasourceImpl({required this.client});
 
   @override
   Future<AdviseEntity> get() async {
