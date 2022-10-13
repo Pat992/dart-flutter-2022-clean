@@ -5,6 +5,7 @@ import 'package:flutter_grundlagen/application/theme_service.dart';
 import 'package:flutter_grundlagen/presentation/theme_animation/widgets/moon.dart';
 import 'package:flutter_grundlagen/presentation/theme_animation/widgets/star.dart';
 import 'package:flutter_grundlagen/presentation/theme_animation/widgets/sun.dart';
+import 'package:flutter_grundlagen/presentation/theme_animation/widgets/theme_switch.dart';
 import 'package:provider/provider.dart';
 
 class ThemeAnimationPage extends StatelessWidget {
@@ -131,6 +132,7 @@ class ThemeAnimationPage extends StatelessWidget {
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
+                          width: double.infinity,
                           decoration: BoxDecoration(
                             color: Theme.of(context).primaryColor,
                             borderRadius: const BorderRadius.only(
@@ -158,26 +160,7 @@ class ThemeAnimationPage extends StatelessWidget {
                                     ?.copyWith(fontSize: 14),
                               ),
                               const SizedBox(height: 15),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Text(
-                                    'Dark Theme:',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1
-                                        ?.copyWith(fontSize: 14),
-                                  ),
-                                  const SizedBox(width: 15),
-                                  Switch(
-                                    value: state.isDarkMode,
-                                    onChanged: (_) => Provider.of<ThemeService>(
-                                            context,
-                                            listen: false)
-                                        .toggleTheme(),
-                                  ),
-                                ],
-                              )
+                              const ThemeSwitcher(),
                             ],
                           ),
                         ),
