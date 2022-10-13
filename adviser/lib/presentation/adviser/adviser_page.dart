@@ -24,8 +24,8 @@ class AdviserPage extends StatelessWidget {
                 child: Center(
                   child: BlocBuilder<AdviserBloc, AdviserState>(
                     // With ..add, you can execute the event right on loaded
-                    bloc: BlocProvider.of<AdviserBloc>(context)
-                      ..add(AdviserRequestedEvent()),
+                    bloc: BlocProvider.of<AdviserBloc>(context),
+                    //..add(AdviserRequestedEvent()),
                     builder: (context, state) {
                       if (state is AdviserInitial) {
                         return Text('Your advise is waiting!',
