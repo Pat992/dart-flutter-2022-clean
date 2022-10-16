@@ -41,7 +41,7 @@ void main() {
       verifyNoMoreInteractions(mockAdviserRepository);
     });
 
-    test('return the created failure from in repo', () async {
+    test('return the created server failure from in repo', () async {
       // arrange
       when(mockAdviserRepository.getAdviseFromApi())
           .thenAnswer((_) async => Right(ServerFailure()));
@@ -50,8 +50,25 @@ void main() {
       final res = await adviserUseCases.getAdvise();
 
       // assert
-      // Check result
+      // Check result -> use equatable to check if the same type
       expect(res, Right(ServerFailure()));
+      // Check if function in repo has been called
+      verify(mockAdviserRepository.getAdviseFromApi());
+      // Check if nothing else has been called in repo
+      verifyNoMoreInteractions(mockAdviserRepository);
+    });
+
+    test('return the created general failure from in repo', () async {
+      // arrange
+      when(mockAdviserRepository.getAdviseFromApi())
+          .thenAnswer((_) async => Right(GeneralFailure()));
+
+      // act
+      final res = await adviserUseCases.getAdvise();
+
+      // assert
+      // Check result -> use equatable to check if the same type
+      expect(res, Right(GeneralFailure()));
       // Check if function in repo has been called
       verify(mockAdviserRepository.getAdviseFromApi());
       // Check if nothing else has been called in repo
