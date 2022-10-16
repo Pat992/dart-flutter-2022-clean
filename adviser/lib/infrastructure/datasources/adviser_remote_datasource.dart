@@ -18,8 +18,8 @@ class AdviserRemoteDatasourceImpl implements AdviserRemoteDatasource {
 
   @override
   Future<AdviseEntity> get() async {
-    final res =
-        await client.get(Uri.parse('https://api.adviceslip.com/advice'));
+    final res = await client.get(Uri.parse('https://api.adviceslip.com/advice'),
+        headers: {'Content-Type': 'application/json'});
 
     if (res.statusCode != 200) {
       throw ServerException();
