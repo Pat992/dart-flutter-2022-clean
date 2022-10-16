@@ -2,9 +2,11 @@ import 'package:adviser/application/adviser/adviser_bloc.dart';
 import 'package:adviser/domain/repositories/adviser_repository.dart';
 import 'package:adviser/domain/usecases/adviser_usecases.dart';
 import 'package:adviser/infrastructure/datasources/adviser_remote_datasource.dart';
+import 'package:adviser/infrastructure/datasources/theme_local_datasource.dart';
 import 'package:adviser/infrastructure/repositories/adviser_repository_impl.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;
 
@@ -23,7 +25,11 @@ Future<void> init() async {
   //! Data sources
   getIt.registerLazySingleton<AdviserRemoteDatasource>(
       () => AdviserRemoteDatasourceImpl(client: getIt()));
+  getIt.registerLazySingleton<ThemeLocalDatasource>(
+      () => ThemeLocalDatasourceImpl(sharedPreferences: getIt()));
 
   //! Extern
   getIt.registerLazySingleton(() => http.Client());
+  final sharedPreferences = await SharedPreferences.getInstance();
+  getIt.registerLazySingleton(() => sharedPreferences);
 }
