@@ -9,10 +9,10 @@ import 'package:http/http.dart' as http;
 final getIt = GetIt.instance;
 
 Future<void> init() async {
-  //! Blocs
+  //! Blocs -> registerFactory will create a new instance on each call
   getIt.registerFactory(() => AdviserBloc(useCases: getIt()));
 
-  //! Use cases -> Singleton will not create new objects, since they do not have a state, lazy creates only when needed
+  //! Use cases -> Singleton will not create new objects on each call, since they do not have a state. lazy creates classes only when needed
   getIt
       .registerLazySingleton(() => AdviserUseCases(adviserRepository: getIt()));
 
