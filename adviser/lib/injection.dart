@@ -1,4 +1,5 @@
 import 'package:adviser/application/adviser/adviser_bloc.dart';
+import 'package:adviser/application/theme/theme_service_provider.dart';
 import 'package:adviser/domain/repositories/adviser_repository.dart';
 import 'package:adviser/domain/repositories/theme_repository.dart';
 import 'package:adviser/domain/usecases/adviser_usecases.dart';
@@ -15,6 +16,7 @@ final getIt = GetIt.instance;
 Future<void> init() async {
   //! Blocs -> registerFactory will create a new instance on each call
   getIt.registerFactory(() => AdviserBloc(useCases: getIt()));
+  getIt.registerLazySingleton(() => ThemeServiceImpl(themeRepository: getIt()));
 
   //! Use cases -> Singleton will not create new objects on each call, since they do not have a state. lazy creates classes only when needed
   getIt
