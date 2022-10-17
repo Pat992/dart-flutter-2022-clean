@@ -3,10 +3,13 @@ import 'package:flutter/foundation.dart';
 
 abstract class ThemeService extends ChangeNotifier {
   late bool isDarkMode;
+  late bool useSystemTheme;
 
   Future<void> init();
   Future<void> toggleTheme();
   Future<void> setTheme({required bool mode});
+  Future<void> toggleUseSystemTheme();
+  Future<void> setUseSystemTheme({required bool systemTheme});
 }
 
 class ThemeServiceImpl extends ChangeNotifier implements ThemeService {
@@ -15,10 +18,18 @@ class ThemeServiceImpl extends ChangeNotifier implements ThemeService {
   ThemeServiceImpl({required this.themeRepository});
 
   @override
-  bool isDarkMode = true;
+  late bool isDarkMode = true;
+  @override
+  late bool useSystemTheme;
 
   @override
   Future<void> init() async {
+    final useSystem = await themeRepository.getUseSystemTheme();
+    await useSystem.fold(
+      (systemTheme) async => await setUseSystemTheme(systemTheme: systemTheme),
+      (failure) async => await setUseSystemTheme(systemTheme: false),
+    );
+
     final modeOrFailure = await themeRepository.getTheme();
     await modeOrFailure.fold(
       (mode) async => await setTheme(mode: mode),
@@ -36,5 +47,17 @@ class ThemeServiceImpl extends ChangeNotifier implements ThemeService {
   @override
   Future<void> toggleTheme() async {
     await setTheme(mode: !isDarkMode);
+  }
+
+  @override
+  Future<void> setUseSystemTheme({required bool systemTheme}) async {
+    useSystemTheme = systemTheme;
+    await themeRepository.setUseSystemTheme(useSystemTheme: useSystemTheme);
+    notifyListeners();
+  }
+
+  @override
+  Future<void> toggleUseSystemTheme() async {
+    await setUseSystemTheme(systemTheme: !useSystemTheme);
   }
 }

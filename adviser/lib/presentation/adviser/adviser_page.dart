@@ -23,6 +23,12 @@ class AdviserPage extends StatelessWidget {
                 Provider.of<ThemeServiceImpl>(context, listen: false)
                     .toggleTheme(),
           ),
+          Switch(
+            value: Provider.of<ThemeServiceImpl>(context).useSystemTheme,
+            onChanged: (_) =>
+                Provider.of<ThemeServiceImpl>(context, listen: false)
+                    .toggleUseSystemTheme(),
+          ),
         ],
       ),
       body: Center(

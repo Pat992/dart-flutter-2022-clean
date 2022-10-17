@@ -29,9 +29,13 @@ class MyApp extends StatelessWidget {
     return Consumer<ThemeServiceImpl>(
       builder: (context, themeService, child) {
         return MaterialApp(
-          theme: themeService.isDarkMode
-              ? AppTheme.darkTheme
-              : AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          theme: AppTheme.lightTheme,
+          themeMode: themeService.useSystemTheme
+              ? ThemeMode.system
+              : themeService.isDarkMode
+                  ? ThemeMode.dark
+                  : ThemeMode.light,
           title: 'Adviser',
           home: BlocProvider(
             create: (context) => getIt<AdviserBloc>(),
