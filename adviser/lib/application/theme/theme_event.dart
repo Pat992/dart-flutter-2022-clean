@@ -8,3 +8,16 @@ class ThemeRequestEvent extends ThemeEvent {
   @override
   List<Object?> get props => [];
 }
+
+class ThemeSetEvent extends ThemeEvent {
+  final bool theme;
+  const ThemeSetEvent({required this.theme});
+
+  @override
+  List<Object?> get props => [];
+}
+
+class ThemeToggleEvent extends ThemeEvent {
+  @override
+  List<Object?> get props => [];
+}

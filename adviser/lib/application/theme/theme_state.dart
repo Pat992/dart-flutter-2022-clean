@@ -15,8 +15,11 @@ class ThemeStateLoading extends ThemeState {
 }
 
 class ThemeStateLoaded extends ThemeState {
+  final bool theme;
+  const ThemeStateLoaded({required this.theme});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [theme];
 }
 
 class ThemeStateError extends ThemeState {
