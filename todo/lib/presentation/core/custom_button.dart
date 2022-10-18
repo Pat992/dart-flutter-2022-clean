@@ -10,7 +10,8 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
 
-    return InkResponse(
+    return InkWell(
+      borderRadius: BorderRadius.circular(8),
       onTap: () => callback(),
       child: Container(
         height: 40,
