@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo/presentation/signup/signup_page.dart';
+import 'package:todo/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,12 +9,15 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Flutter Demo',
-      home: Placeholder(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.dark,
+      title: 'Todo',
+      home: const SignupPage(),
     );
   }
 }
