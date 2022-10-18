@@ -40,21 +40,24 @@ class AppTheme {
   static final TextStyle _darkThemeHeadingTextStyle =
       _lightHeadingText.copyWith(color: _darkTextColorPrimary);
 
-  static final TextStyle _darkThemeBodyeTextStyle =
+  static final TextStyle _darkThemeBodyTextStyle =
       _lightBodyText.copyWith(color: _darkTextColorPrimary);
 
   static final TextTheme _darkTextTheme = TextTheme(
     headline1: _darkThemeHeadingTextStyle,
-    bodyText1: _darkThemeBodyeTextStyle,
+    bodyText1: _darkThemeBodyTextStyle,
   );
 
   static final InputDecorationTheme _inputDecorationTheme =
       InputDecorationTheme(
-          floatingLabelStyle: const TextStyle(color: Colors.white),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(color: Colors.white)),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)));
+    floatingLabelStyle: const TextStyle(color: Colors.white),
+    focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: const BorderSide(color: Colors.white)),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+  );
 
   static final ThemeData lightTheme = ThemeData(
       inputDecorationTheme: _inputDecorationTheme,
