@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/application/auth/signup/signup_bloc.dart';
+import 'package:todo/core/failures/failures.dart';
 import 'package:todo/core/validators/email_validator.dart';
 import 'package:todo/core/validators/password_validator.dart';
 import 'package:todo/presentation/core/custom_button.dart';
@@ -33,8 +34,35 @@ class SignupForm extends StatelessWidget {
       return res;
     }
 
+    String mapFailureMessage(Failure failure) {
+      switch (failure.runtimeType) {
+        case InvalidEmailOrPasswordFailure:
+          return 'Email or Password wrong';
+        case EmailAlreadyInUseFailure:
+          return 'Email already in use';
+        case ServerFailure:
+        default:
+          return 'Something went wrong, try again later.';
+      }
+    }
+
     return BlocConsumer<SignupBloc, SignupFormState>(
       listener: (context, state) {
+        state.successOrFailure.fold(
+          () => {},
+          (eitherSuccessOrFailure) => eitherSuccessOrFailure.fold(
+            (success) => print('logged in'),
+            (failure) => ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.redAccent,
+                content: Text(
+                  mapFailureMessage(failure),
+                  style: themeData.textTheme.bodyText1,
+                ),
+              ),
+            ),
+          ),
+        );
         // TODO: Navigate to homepage
         // TODO: Show error if unsuccessful
       },
