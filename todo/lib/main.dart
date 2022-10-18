@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/application/auth/signup/signup_bloc.dart';
 import 'package:todo/presentation/signup/signup_page.dart';
@@ -9,6 +10,8 @@ import 'package:todo/injection.dart';
 void main() async {
   // Only start app after dependency injection
   WidgetsFlutterBinding.ensureInitialized();
+  // Initialize firebase
+  await Firebase.initializeApp();
   // Run dependency injection
   await injection.init();
   runApp(const MyApp());

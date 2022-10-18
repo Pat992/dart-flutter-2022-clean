@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/application/auth/signup/signup_bloc.dart';
+import 'package:todo/core/validators/email_validator.dart';
+import 'package:todo/core/validators/password_validator.dart';
 import 'package:todo/presentation/core/custom_button.dart';
 
 class SignupForm extends StatelessWidget {
@@ -10,30 +12,25 @@ class SignupForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    late String _email;
-    late String _password;
+    late String email;
+    late String password;
 
     String? validateEmail(String? input) {
-      const emailRegex =
-          r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
-
-      if (input == null || input.isEmpty) {
-        return 'Please enter an E-Mail';
-      } else if (RegExp(emailRegex).hasMatch(input)) {
-        _email = input;
+      final res = emailValidator(input);
+      if (res == null) {
+        email = input!;
         return null;
       }
-      return 'Please enter a valid E-Mail';
+      return res;
     }
 
     String? validatePassword(String? input) {
-      if (input == null || input.isEmpty) {
-        return 'Please enter a Password';
-      } else if (input.length >= 6) {
-        _password = input;
+      final res = passwordValidator(input);
+      if (res == null) {
+        password = input!;
         return null;
       }
-      return 'Please enter a Password with at least 6 characters';
+      return res;
     }
 
     return BlocConsumer<SignupBloc, SignupFormState>(
@@ -91,7 +88,7 @@ class SignupForm extends StatelessWidget {
                     if (formKey.currentState!.validate()) {
                       BlocProvider.of<SignupBloc>(context).add(
                           SignInWithEmailAndPasswordEvent(
-                              email: _email, password: _password));
+                              email: email, password: password));
                     } else {
                       BlocProvider.of<SignupBloc>(context).add(
                           const SignInWithEmailAndPasswordEvent(
@@ -115,7 +112,7 @@ class SignupForm extends StatelessWidget {
                     if (formKey.currentState!.validate()) {
                       BlocProvider.of<SignupBloc>(context).add(
                           RegisterWithEmailAndPasswordEvent(
-                              email: _email, password: _password));
+                              email: email, password: password));
                     } else {
                       BlocProvider.of<SignupBloc>(context).add(
                           const RegisterWithEmailAndPasswordEvent(
