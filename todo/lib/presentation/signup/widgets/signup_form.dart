@@ -49,11 +49,13 @@ class SignupForm extends StatelessWidget {
     }
 
     return BlocConsumer<SignupBloc, SignupFormState>(
+      // Only run listener if state has changed
+      listenWhen: (p, c) => p.successOrFailure != c.successOrFailure,
       listener: (context, state) {
         state.successOrFailure.fold(
           () => {},
           (eitherSuccessOrFailure) => eitherSuccessOrFailure.fold(
-            (success) => AutoRouter.of(context).push(const HomePageRoute()),
+            (success) => AutoRouter.of(context).replace(const HomePageRoute()),
             (failure) => ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 backgroundColor: Colors.redAccent,
