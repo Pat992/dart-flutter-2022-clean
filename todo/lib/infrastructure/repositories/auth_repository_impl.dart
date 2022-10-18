@@ -41,4 +41,8 @@ class AuthRepositoryImpl implements AuthRepository {
       return right(AuthFailure());
     }
   }
+
+  // Futures can all be awaited with a Future.wait([])
+  @override
+  Future<void> signOut() => Future.wait([firebaseAuth.signOut()]);
 }

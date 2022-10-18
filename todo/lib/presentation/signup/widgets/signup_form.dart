@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/application/auth/signup/signup_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:todo/core/failures/failures.dart';
 import 'package:todo/core/validators/email_validator.dart';
 import 'package:todo/core/validators/password_validator.dart';
 import 'package:todo/presentation/core/custom_button.dart';
+import 'package:todo/presentation/routes/router.gr.dart';
 
 class SignupForm extends StatelessWidget {
   const SignupForm({Key? key}) : super(key: key);
@@ -51,7 +53,7 @@ class SignupForm extends StatelessWidget {
         state.successOrFailure.fold(
           () => {},
           (eitherSuccessOrFailure) => eitherSuccessOrFailure.fold(
-            (success) => print('logged in'),
+            (success) => AutoRouter.of(context).push(const HomePageRoute()),
             (failure) => ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 backgroundColor: Colors.redAccent,
