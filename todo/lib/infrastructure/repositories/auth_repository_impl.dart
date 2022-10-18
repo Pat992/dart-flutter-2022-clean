@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo/core/failures/failures.dart';
+import 'package:todo/domain/entities/user_entity.dart';
 import 'package:todo/domain/repositories/auth_repository.dart';
+import 'package:todo/infrastructure/models/firebase_user_model.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuth firebaseAuth;
@@ -45,4 +47,9 @@ class AuthRepositoryImpl implements AuthRepository {
   // Futures can all be awaited with a Future.wait([])
   @override
   Future<void> signOut() => Future.wait([firebaseAuth.signOut()]);
+
+  // Return none or UserEntity
+  @override
+  Option<UserEntity> getSignedIn() =>
+      optionOf(firebaseAuth.currentUser?.toDomain());
 }

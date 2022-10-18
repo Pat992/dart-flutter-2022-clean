@@ -45,6 +45,7 @@ dependencies:
   dartz: ^0.10.1
   firebase_auth: ^3.11.2
   auto_route: ^5.0.2
+  uuid: ^3.0.6
 
 dev_dependencies:
   flutter_test:

@@ -8,3 +8,8 @@ class SignOutEvent extends AuthEvent {
   @override
   List<Object?> get props => [];
 }
+
+class AuthCheckRequestEvent extends AuthEvent {
+  @override
+  List<Object?> get props => [];
+}
