@@ -14,6 +14,7 @@ class ObserverBloc extends Bloc<ObserverEvent, ObserverState> {
   final TodoRepository todoRepository;
 
   // use controller to prevent huge amount of opening listeners
+  // Also necessary since bloc is a factory -> streams would still be open if bloc is closed
   StreamSubscription<Either<List<TodoEntity>, Failure>>? _streamSubscription;
 
   ObserverBloc({required this.todoRepository}) : super(ObserverInitial()) {
@@ -31,10 +32,18 @@ class ObserverBloc extends Bloc<ObserverEvent, ObserverState> {
     });
 
     on<ObserveTodosUpdatedEvent>((event, emit) {
+      print(event.todosOrFailure);
       event.todosOrFailure.fold(
         (todos) => emit(ObserverSuccessState(todos: todos)),
         (failure) => emit(ObserverFailureState(failure: failure)),
       );
     });
+  }
+
+  // Close listener when bloc is closed VERY IMPORTANT -> override existing close function
+  @override
+  Future<void> close() async {
+    await _streamSubscription?.cancel();
+    super.close();
   }
 }
