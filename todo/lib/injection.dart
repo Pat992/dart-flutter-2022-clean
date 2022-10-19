@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:todo/application/auth/auth_bloc.dart';
 import 'package:todo/application/auth/signup/signup_bloc.dart';
-import 'package:todo/application/todo/observer_bloc.dart';
+import 'package:todo/application/todo/controller/controller_bloc.dart';
+import 'package:todo/application/todo/observer/observer_bloc.dart';
 import 'package:todo/domain/repositories/auth_repository.dart';
 import 'package:todo/domain/repositories/todo_repository.dart';
 import 'package:todo/infrastructure/repositories/auth_repository_impl.dart';
@@ -16,6 +17,7 @@ Future<void> init() async {
   getIt.registerFactory(() => SignupBloc(authRepository: getIt()));
   getIt.registerFactory(() => AuthBloc(authRepository: getIt()));
   getIt.registerFactory(() => ObserverBloc(todoRepository: getIt()));
+  getIt.registerFactory(() => ControllerBloc(todoRepository: getIt()));
 
   //! Use cases
 
