@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:todo/application/auth/auth_bloc.dart';
 import 'package:todo/application/auth/signup/signup_bloc.dart';
+import 'package:todo/application/todo/observer_bloc.dart';
 import 'package:todo/domain/repositories/auth_repository.dart';
 import 'package:todo/domain/repositories/todo_repository.dart';
 import 'package:todo/infrastructure/repositories/auth_repository_impl.dart';
@@ -14,6 +15,7 @@ Future<void> init() async {
   //! Blocs -> registerFactory will create a new instance on each call
   getIt.registerFactory(() => SignupBloc(authRepository: getIt()));
   getIt.registerFactory(() => AuthBloc(authRepository: getIt()));
+  getIt.registerFactory(() => ObserverBloc(todoRepository: getIt()));
 
   //! Use cases
 
