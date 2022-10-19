@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo/application/todo/observer_bloc.dart';
+import 'package:todo/application/todo/observer/observer_bloc.dart';
 import 'package:todo/core/failures/failures.dart';
 import 'package:todo/presentation/home/widgets/todo_card.dart';
 
