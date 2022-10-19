@@ -36,20 +36,59 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  Future<Either<Unit, Failure>> create(TodoEntity todo) {
-    // TODO: implement create
-    throw UnimplementedError();
+  Future<Either<Unit, Failure>> create(TodoEntity todo) async {
+    final userDoc = await fireStore.userDocument();
+    final todoModel = TodoModel.fromDomain(todo);
+
+    try {
+      await userDoc.todoCollection.doc(todoModel.id).set(todoModel.toJson());
+      return left(unit);
+    } on FirebaseException catch (e) {
+      if (e.code.contains('permission-denied') ||
+          e.code.contains('PERMISSION_DENIED')) {
+        return right(InsufficientPermissionsFailure());
+      }
+      return right(UnexpectedFailure());
+    } catch (e) {
+      return right(UnexpectedFailure());
+    }
   }
 
   @override
-  Future<Either<Unit, Failure>> delete(TodoEntity todo) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<Either<Unit, Failure>> delete(TodoEntity todo) async {
+    final userDoc = await fireStore.userDocument();
+    final todoModel = TodoModel.fromDomain(todo);
+
+    try {
+      await userDoc.todoCollection.doc(todoModel.id).delete();
+      return left(unit);
+    } on FirebaseException catch (e) {
+      if (e.code.contains('permission-denied') ||
+          e.code.contains('PERMISSION_DENIED')) {
+        return right(InsufficientPermissionsFailure());
+      }
+      return right(UnexpectedFailure());
+    } catch (e) {
+      return right(UnexpectedFailure());
+    }
   }
 
   @override
-  Future<Either<Unit, Failure>> update(TodoEntity todo) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<Either<Unit, Failure>> update(TodoEntity todo) async {
+    final userDoc = await fireStore.userDocument();
+    final todoModel = TodoModel.fromDomain(todo);
+
+    try {
+      await userDoc.todoCollection.doc(todoModel.id).update(todoModel.toJson());
+      return left(unit);
+    } on FirebaseException catch (e) {
+      if (e.code.contains('permission-denied') ||
+          e.code.contains('PERMISSION_DENIED')) {
+        return right(InsufficientPermissionsFailure());
+      }
+      return right(UnexpectedFailure());
+    } catch (e) {
+      return right(UnexpectedFailure());
+    }
   }
 }
