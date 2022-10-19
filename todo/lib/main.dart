@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/application/auth/auth_bloc.dart';
 import 'package:todo/application/auth/signup/signup_bloc.dart';
+import 'package:todo/application/todo/observer_bloc.dart';
 import 'package:todo/presentation/routes/router.gr.dart' as r;
 import 'package:todo/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<AuthBloc>()..add(AuthCheckRequestEvent()),
         ),
+        BlocProvider(create: (context) => getIt<ObserverBloc>()),
       ],
       child: MaterialApp.router(
         routeInformationParser: _appRouter.defaultRouteParser(),
