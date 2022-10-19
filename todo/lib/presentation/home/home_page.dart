@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/application/auth/auth_bloc.dart';
-import 'package:todo/application/todo/observer_bloc.dart';
+import 'package:todo/application/todo/observer/observer_bloc.dart';
 import 'package:todo/injection.dart';
 import 'package:todo/presentation/home/widgets/home_body.dart';
 import 'package:todo/presentation/routes/router.gr.dart';
