@@ -15,5 +15,5 @@ extension FirestoreExtension on FirebaseFirestore {
 
 extension DocumentReferenceEtension on DocumentReference {
   CollectionReference<Map<String, dynamic>> get todoCollection =>
-      collection('todo');
+      collection('todos');
 }
