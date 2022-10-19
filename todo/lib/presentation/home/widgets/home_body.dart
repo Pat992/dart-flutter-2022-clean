@@ -36,7 +36,6 @@ class HomeBody extends StatelessWidget {
           child: Text(_mapFailureToMessage(state.failure)),
         );
       } else if (state is ObserverSuccessState) {
-        print(state.todos.length);
         return ListView.builder(
             itemCount: state.todos.length,
             itemBuilder: (context, index) {
