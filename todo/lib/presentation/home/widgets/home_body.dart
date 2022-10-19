@@ -10,10 +10,8 @@ class HomeBody extends StatelessWidget {
   String _mapFailureToMessage(Failure todoFailure) {
     switch (todoFailure.runtimeType) {
       case InsufficientPermissionsFailure:
-        return "You have not the permissions to do that";
+        return "You do not have the permissions to do that";
       case UnexpectedFailure:
-        return "Something went wrong";
-
       default:
         return "Something went wrong";
     }
