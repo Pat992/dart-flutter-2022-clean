@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/application/todo/controller/controller_bloc.dart';
 import 'package:todo/domain/entities/todo/todo_entity.dart';
+import 'package:todo/presentation/routes/router.gr.dart';
 
 class TodoCard extends StatelessWidget {
   final TodoEntity todoEntity;
@@ -55,6 +57,8 @@ class TodoCard extends StatelessWidget {
         final controllerBloc = context.read<ControllerBloc>();
         _showDeleteDialog(context: context, controllerBloc: controllerBloc);
       },
+      onTap: () =>
+          AutoRouter.of(context).push(TodoDetailsPageRoute(todo: todoEntity)),
       child: Card(
         elevation: 16,
         color: todoEntity.color.color,

@@ -24,6 +24,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Theme.of(context);
     // for initial event, the bloc needs to be initialized
     final observerBloc = getIt<ObserverBloc>()..add(ObserveAllEvent());
 
@@ -67,6 +68,12 @@ class HomePage extends StatelessWidget {
             title: const Text('Todo'),
           ),
           body: const HomeBody(),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () =>
+                AutoRouter.of(context).push(TodoDetailsPageRoute(todo: null)),
+            backgroundColor: themeData.colorScheme.secondary,
+            child: const Icon(Icons.add, size: 26),
+          ),
         ),
       ),
     );
