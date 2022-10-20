@@ -5,6 +5,7 @@ import 'package:todo/core/failures/failures.dart';
 import 'package:todo/domain/entities/todo/todo_entity.dart';
 import 'package:todo/injection.dart';
 import 'package:todo/presentation/routes/router.gr.dart';
+import 'package:todo/presentation/todo_details/widgets/save_progress_overlay.dart';
 import 'package:todo/presentation/todo_details/widgets/todo_form.dart';
 
 class TodoDetailsPage extends StatelessWidget {
@@ -27,7 +28,7 @@ class TodoDetailsPage extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           getIt<TodoFormBloc>()..add(TodoFormInitializeDetailPage(todo: todo)),
-      child: BlocListener<TodoFormBloc, TodoFormState>(
+      child: BlocConsumer<TodoFormBloc, TodoFormState>(
         // Only listen if success or failure is not the same as in previous state
         listenWhen: (prev, curr) =>
             prev.successOrFailureOption != curr.successOrFailureOption,
@@ -46,12 +47,17 @@ class TodoDetailsPage extends StatelessWidget {
             ),
           );
         },
-        child: Scaffold(
+        builder: (context, state) => Scaffold(
           appBar: AppBar(
             centerTitle: true,
             title: Text(todo != null ? 'Edit Todo' : 'Create Todo'),
           ),
-          body: const TodoForm(),
+          body: Stack(
+            children: [
+              const TodoForm(),
+              SaveProgressOverlay(saving: state.isSaving),
+            ],
+          ),
         ),
       ),
     );

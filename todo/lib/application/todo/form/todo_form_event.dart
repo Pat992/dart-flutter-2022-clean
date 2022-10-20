@@ -10,6 +10,11 @@ class TodoFormInitializeDetailPage extends TodoFormEvent {
 
 class TodoFormColorChangedEvent extends TodoFormEvent {
   final Color color;
-
   TodoFormColorChangedEvent({required this.color});
+}
+
+class TodoFormSaveEvent extends TodoFormEvent {
+  final String? title;
+  final String? body;
+  TodoFormSaveEvent({required this.title, required this.body});
 }

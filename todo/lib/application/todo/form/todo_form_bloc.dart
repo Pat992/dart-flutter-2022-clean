@@ -33,5 +33,28 @@ class TodoFormBloc extends Bloc<TodoFormEvent, TodoFormState> {
         ),
       );
     });
+
+    on<TodoFormSaveEvent>((event, emit) async {
+      Either<Unit, Failure>? successOrFailure;
+      emit(state.copyWith(isSaving: true, successOrFailureOption: none()));
+      if (event.title != null && event.body != null) {
+        final editedTodo =
+            state.todo.copyWith(title: event.title, body: event.body);
+
+        if (state.isEditing) {
+          successOrFailure = await todoRepository.update(editedTodo);
+        } else {
+          successOrFailure = await todoRepository.create(editedTodo);
+        }
+      }
+
+      emit(
+        state.copyWith(
+          isSaving: false,
+          showErrorMessages: true,
+          successOrFailureOption: optionOf(successOrFailure),
+        ),
+      );
+    });
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/application/todo/form/todo_form_bloc.dart';
 import 'package:todo/core/validators/body_validator.dart';
 import 'package:todo/core/validators/title_validator.dart';
+import 'package:todo/presentation/core/custom_button.dart';
 import 'package:todo/presentation/todo_details/widgets/color_field.dart';
 
 class TodoForm extends StatelessWidget {
@@ -22,6 +23,7 @@ class TodoForm extends StatelessWidget {
       final res = bodyValidator(input);
       if (res == null) {
         body = input!;
+        return null;
       } else {
         return res;
       }
@@ -31,6 +33,7 @@ class TodoForm extends StatelessWidget {
       final res = titleValidator(input);
       if (res == null) {
         title = input!;
+        return null;
       } else {
         return res;
       }
@@ -75,6 +78,28 @@ class TodoForm extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 ColorField(color: state.todo.color),
+                const SizedBox(height: 40),
+                CustomButton(
+                    text: 'SAVE',
+                    callback: () {
+                      if (formKey.currentState!.validate()) {
+                        BlocProvider.of<TodoFormBloc>(context, listen: false)
+                            .add(TodoFormSaveEvent(title: title, body: body));
+                      } else {
+                        BlocProvider.of<TodoFormBloc>(context, listen: false)
+                            .add(TodoFormSaveEvent(title: null, body: null));
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Colors.redAccent,
+                            content: Text(
+                              'Invalid input',
+                              style: themeData.textTheme.bodyText1,
+                            ),
+                          ),
+                        );
+                      }
+                    }),
               ],
             ),
           ),
