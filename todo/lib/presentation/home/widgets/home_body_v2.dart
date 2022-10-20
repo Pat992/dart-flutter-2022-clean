@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/application/todo/observer/observer_bloc.dart';
 import 'package:todo/core/failures/failures.dart';
+import 'package:todo/presentation/home/widgets/progress_bar.dart';
 import 'package:todo/presentation/home/widgets/todo_item.dart';
 
 import 'flexible_space.dart';
@@ -50,6 +51,17 @@ class HomeBody extends StatelessWidget {
                 backgroundColor: themeData.scaffoldBackgroundColor,
                 pinned: true,
                 flexibleSpace: const FlexibleSpace(),
+              ),
+
+              SliverPadding(
+                padding: const EdgeInsets.only(
+                  right: _spacing,
+                  left: _spacing,
+                ),
+                // Normal widgets are not allowed, need to ad an adapter
+                sliver: SliverToBoxAdapter(
+                  child: ProgressBar(todos: state.todos),
+                ),
               ),
               // Obviously you have to use sliver-whatever widgets
               SliverPadding(
