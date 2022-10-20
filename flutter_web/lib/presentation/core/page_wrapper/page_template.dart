@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web/constants.dart';
+import 'package:flutter_web/presentation/core/menu/menu_bar.dart';
 
 class PageTemplate extends StatelessWidget {
   final Widget child;
@@ -8,11 +8,9 @@ class PageTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Flutter Web',
-          style: TextStyle(fontFamily: fontFamily),
-        ),
+      appBar: const PreferredSize(
+        preferredSize: Size(double.infinity, 66),
+        child: MenuBar(),
       ),
       body: child,
     );
