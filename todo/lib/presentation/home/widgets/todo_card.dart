@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/application/todo/controller/controller_bloc.dart';
-import 'package:todo/application/todo/observer/observer_bloc.dart';
 import 'package:todo/domain/entities/todo/todo_entity.dart';
 
 class TodoCard extends StatelessWidget {
@@ -34,8 +33,6 @@ class TodoCard extends StatelessWidget {
                 onPressed: () {
                   controllerBloc.add(DeleteTodoEvent(todo: todoEntity));
                   Navigator.pop(context);
-                  BlocProvider.of<ObserverBloc>(context, listen: false)
-                      .add(ObserveAllEvent());
                 },
                 child: const Text(
                   'DELETE',
@@ -66,10 +63,8 @@ class TodoCard extends StatelessWidget {
               value: todoEntity.done,
               onChanged: (val) {
                 if (val != null) {
-                  BlocProvider.of<ControllerBloc>(context, listen: false)
+                  BlocProvider.of<ControllerBloc>(context)
                       .add(UpdateTodoEvent(todo: todoEntity, done: val));
-                  BlocProvider.of<ObserverBloc>(context, listen: false)
-                      .add(ObserveAllEvent());
                 }
               }),
           title: Text(

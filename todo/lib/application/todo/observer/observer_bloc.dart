@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 import 'package:todo/core/failures/failures.dart';
 import 'package:todo/domain/entities/todo/todo_entity.dart';
 import 'package:todo/domain/repositories/todo_repository.dart';
@@ -19,10 +18,21 @@ class ObserverBloc extends Bloc<ObserverEvent, ObserverState> {
 
   ObserverBloc({required this.todoRepository}) : super(ObserverInitial()) {
     on<ObserveAllEvent>((event, emit) async {
+      emit(ObserverLoadingState());
+
       // If already an existing subscription, then close VERY IMPORTANT for performance
       await _streamSubscription?.cancel();
 
-      emit(ObserverLoadingState());
+      // Stream listener
+      _streamSubscription = todoRepository.watchAll().listen((todosOrFailure) {
+        // Call another Event
+        add(ObserveTodosUpdatedEvent(todosOrFailure: todosOrFailure));
+      });
+    });
+
+    on<ObserveUpdateEvent>((event, emit) async {
+      // If already an existing subscription, then close VERY IMPORTANT for performance
+      await _streamSubscription?.cancel();
 
       // Stream listener
       _streamSubscription = todoRepository.watchAll().listen((todosOrFailure) {

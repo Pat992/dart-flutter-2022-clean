@@ -37,8 +37,7 @@ class HomeBody extends StatelessWidget {
         return ListView.builder(
             itemCount: state.todos.length,
             itemBuilder: (context, index) {
-              final todo = state.todos[index];
-              return TodoCard(todoEntity: todo);
+              return TodoCard(todoEntity: state.todos[index]);
             });
       }
       return Container();
