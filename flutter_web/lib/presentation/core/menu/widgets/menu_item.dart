@@ -3,7 +3,9 @@ import 'package:flutter_web/constants.dart';
 
 class MenuTextItem extends StatelessWidget {
   final String text;
-  const MenuTextItem({Key? key, required this.text}) : super(key: key);
+  final bool inDrawer;
+  const MenuTextItem({Key? key, required this.text, required this.inDrawer})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +17,10 @@ class MenuTextItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
             text,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: fontFamily,
               fontSize: 15,
-              color: textPrimaryLight,
+              color: inDrawer ? textPrimaryDark : textPrimaryLight,
             ),
           ),
         ),

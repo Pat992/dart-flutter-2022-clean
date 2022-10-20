@@ -16,7 +16,7 @@ class MenuBar extends StatelessWidget {
         color: Colors.white,
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Colors.black,
+            color: Colors.black45,
             offset: Offset(0, 2),
             blurRadius: 4,
           ),
@@ -26,11 +26,11 @@ class MenuBar extends StatelessWidget {
         children: const <Widget>[
           FlutterHomeLogo(),
           Spacer(),
-          MenuTextItem(text: 'Docs'),
-          MenuTextItem(text: 'Showcase'),
-          MenuTextItem(text: 'Development'),
-          MenuTextItem(text: 'Ecosystem'),
-          GetStartedButton(),
+          MenuTextItem(text: 'Docs', inDrawer: false),
+          MenuTextItem(text: 'Showcase', inDrawer: false),
+          MenuTextItem(text: 'Development', inDrawer: false),
+          MenuTextItem(text: 'Ecosystem', inDrawer: false),
+          GetStartedButton(inDrawer: false),
         ],
       ),
     );
