@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:todo/application/auth/auth_bloc.dart';
 import 'package:todo/application/auth/signup/signup_bloc.dart';
 import 'package:todo/application/todo/controller/controller_bloc.dart';
+import 'package:todo/application/todo/form/todo_form_bloc.dart';
 import 'package:todo/application/todo/observer/observer_bloc.dart';
 import 'package:todo/domain/repositories/auth_repository.dart';
 import 'package:todo/domain/repositories/todo_repository.dart';
@@ -18,6 +19,7 @@ Future<void> init() async {
   getIt.registerFactory(() => AuthBloc(authRepository: getIt()));
   getIt.registerFactory(() => ObserverBloc(todoRepository: getIt()));
   getIt.registerFactory(() => ControllerBloc(todoRepository: getIt()));
+  getIt.registerFactory(() => TodoFormBloc(todoRepository: getIt()));
 
   //! Use cases
 

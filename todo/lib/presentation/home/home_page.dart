@@ -15,10 +15,10 @@ class HomePage extends StatelessWidget {
   String _mapFailureToMessage(Failure todoFailure) {
     switch (todoFailure.runtimeType) {
       case InsufficientPermissionsFailure:
-        return "You do not have the permissions to do that";
+        return "You have insufficient permissions, please try again later.";
       case UnexpectedFailure:
       default:
-        return "Something went wrong";
+        return "Something went wrong, please try again later";
     }
   }
 
