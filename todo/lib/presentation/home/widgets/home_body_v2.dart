@@ -4,6 +4,8 @@ import 'package:todo/application/todo/observer/observer_bloc.dart';
 import 'package:todo/core/failures/failures.dart';
 import 'package:todo/presentation/home/widgets/todo_item.dart';
 
+import 'flexible_space.dart';
+
 class HomeBody extends StatelessWidget {
   const HomeBody({Key? key}) : super(key: key);
 
@@ -22,6 +24,7 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
+
     return BlocBuilder<ObserverBloc, ObserverState>(builder: (context, state) {
       if (state is ObserverInitial) {
         return Container();
@@ -36,22 +39,44 @@ class HomeBody extends StatelessWidget {
           child: Text(_mapFailureToMessage(state.failure)),
         );
       } else if (state is ObserverSuccessState) {
-        return Padding(
-          padding: const EdgeInsets.all(_spacing),
-          child: GridView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: state.todos.length,
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200,
-                crossAxisSpacing: _spacing,
-                mainAxisSpacing: _spacing,
-                childAspectRatio: 4 / 5,
+        // CustomScrollView for Slivers, the whole body will be scrollable
+        return SafeArea(
+          child: CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              SliverAppBar(
+                collapsedHeight: 70,
+                expandedHeight: 280,
+                backgroundColor: themeData.scaffoldBackgroundColor,
+                pinned: true,
+                flexibleSpace: const FlexibleSpace(),
               ),
-              itemBuilder: (context, index) {
-                return TodoItem(
-                  todoEntity: state.todos[index],
-                );
-              }),
+              // Obviously you have to use sliver-whatever widgets
+              SliverPadding(
+                padding: const EdgeInsets.only(
+                  top: _spacing,
+                  right: _spacing,
+                  left: _spacing,
+                  bottom: 100,
+                ),
+                sliver: SliverGrid(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => TodoItem(
+                      todoEntity: state.todos[index],
+                    ),
+                    // here the item count hides inside the SliverChildBuilderDelegate
+                    childCount: state.todos.length,
+                  ),
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200,
+                    crossAxisSpacing: _spacing,
+                    mainAxisSpacing: _spacing,
+                    childAspectRatio: 4 / 5,
+                  ),
+                ),
+              ),
+            ],
+          ),
         );
       }
       return Container();

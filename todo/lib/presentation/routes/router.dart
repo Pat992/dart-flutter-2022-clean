@@ -1,5 +1,5 @@
 import 'package:auto_route/annotations.dart';
-import 'package:todo/presentation/home/home_page.dart';
+import 'package:todo/presentation/home/home_page_v2.dart';
 import 'package:todo/presentation/signup/signup_page.dart';
 import 'package:todo/presentation/splash/splash_page.dart';
 import 'package:todo/presentation/todo_details/todo_details_page.dart';

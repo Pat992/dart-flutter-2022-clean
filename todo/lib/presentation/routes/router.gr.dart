@@ -15,7 +15,7 @@ import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 
 import '../../domain/entities/todo/todo_entity.dart' as _i7;
-import '../home/home_page.dart' as _i3;
+import '../home/home_page_v2.dart' as _i3;
 import '../signup/signup_page.dart' as _i2;
 import '../splash/splash_page.dart' as _i1;
 import '../todo_details/todo_details_page.dart' as _i4;
