@@ -6,7 +6,7 @@ import 'package:todo/application/todo/controller/controller_bloc.dart';
 import 'package:todo/application/todo/observer/observer_bloc.dart';
 import 'package:todo/core/failures/failures.dart';
 import 'package:todo/injection.dart';
-import 'package:todo/presentation/home/widgets/home_body.dart';
+import 'package:todo/presentation/home/widgets/home_body_v2.dart';
 import 'package:todo/presentation/routes/router.gr.dart';
 
 class HomePage extends StatelessWidget {
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             onPressed: () =>
                 AutoRouter.of(context).push(TodoDetailsPageRoute(todo: null)),
-            backgroundColor: themeData.colorScheme.secondary,
+            backgroundColor: Colors.white,
             child: const Icon(Icons.add, size: 26),
           ),
         ),
