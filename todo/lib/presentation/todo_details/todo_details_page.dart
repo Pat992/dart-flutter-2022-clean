@@ -5,6 +5,7 @@ import 'package:todo/core/failures/failures.dart';
 import 'package:todo/domain/entities/todo/todo_entity.dart';
 import 'package:todo/injection.dart';
 import 'package:todo/presentation/routes/router.gr.dart';
+import 'package:todo/presentation/todo_details/widgets/todo_form.dart';
 
 class TodoDetailsPage extends StatelessWidget {
   final TodoEntity? todo;
@@ -23,7 +24,6 @@ class TodoDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeData = Theme.of(context);
     return BlocProvider(
       create: (context) =>
           getIt<TodoFormBloc>()..add(TodoFormInitializeDetailPage(todo: todo)),
@@ -51,7 +51,7 @@ class TodoDetailsPage extends StatelessWidget {
             centerTitle: true,
             title: Text(todo != null ? 'Edit Todo' : 'Create Todo'),
           ),
-          body: const Placeholder(),
+          body: const TodoForm(),
         ),
       ),
     );
