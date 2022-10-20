@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 import 'package:todo/core/failures/failures.dart';
+import 'package:todo/domain/entities/todo/color_entity.dart';
 import 'package:todo/domain/entities/todo/todo_entity.dart';
 import 'package:todo/domain/repositories/todo_repository.dart';
 
@@ -19,6 +22,16 @@ class TodoFormBloc extends Bloc<TodoFormEvent, TodoFormState> {
       } else {
         emit(state);
       }
+    });
+
+    on<TodoFormColorChangedEvent>((event, emit) {
+      emit(
+        state.copyWith(
+          todo: state.todo.copyWith(
+            color: ColorEntity(color: event.color),
+          ),
+        ),
+      );
     });
   }
 }

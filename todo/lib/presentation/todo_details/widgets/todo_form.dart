@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/application/todo/form/todo_form_bloc.dart';
 import 'package:todo/core/validators/body_validator.dart';
 import 'package:todo/core/validators/title_validator.dart';
+import 'package:todo/presentation/todo_details/widgets/color_field.dart';
 
 class TodoForm extends StatelessWidget {
   const TodoForm({Key? key}) : super(key: key);
@@ -72,6 +73,8 @@ class TodoForm extends StatelessWidget {
                   maxLines: 9,
                   minLines: 5,
                 ),
+                const SizedBox(height: 20),
+                ColorField(color: state.todo.color),
               ],
             ),
           ),
