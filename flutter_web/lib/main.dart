@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web/presentation/homepage/home_page.dart';
 import 'package:flutter_web/router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:routemaster/routemaster.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() {
+  usePathUrlStrategy();
   runApp(const MyApp());
 }
 
