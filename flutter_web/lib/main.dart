@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web/presentation/homepage/home_page.dart';
+import 'package:flutter_web/router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:routemaster/routemaster.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +13,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routeInformationParser: const RoutemasterParser(),
+      routerDelegate:
+          RoutemasterDelegate(routesBuilder: (BuildContext context) => router),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Web',
       builder: (context, widget) => ResponsiveWrapper.builder(
@@ -28,7 +33,6 @@ class MyApp extends StatelessWidget {
           ResponsiveBreakpoint.resize(1000, name: DESKTOP),
         ],
       ),
-      home: const HomePage(),
     );
   }
 }

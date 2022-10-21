@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web/presentation/core/buttons/custom_button.dart';
 import 'package:flutter_web/presentation/core/menu/widgets/flutter_home_logo.dart';
 import 'package:flutter_web/presentation/core/menu/widgets/menu_item.dart';
+import 'package:flutter_web/presentation/devpage/dev_page.dart';
+import 'package:flutter_web/presentation/ecopage/eco_page.dart';
 
 class MenuBar extends StatelessWidget {
   const MenuBar({Key? key}) : super(key: key);
@@ -26,10 +28,11 @@ class MenuBar extends StatelessWidget {
         children: const <Widget>[
           FlutterHomeLogo(),
           Spacer(),
-          MenuTextItem(text: 'Docs', inDrawer: false),
-          MenuTextItem(text: 'Showcase', inDrawer: false),
-          MenuTextItem(text: 'Development', inDrawer: false),
-          MenuTextItem(text: 'Ecosystem', inDrawer: false),
+          MenuTextItem(text: 'Docs', inDrawer: false, path: ''),
+          MenuTextItem(text: 'Showcase', inDrawer: false, path: ''),
+          MenuTextItem(
+              text: 'Development', inDrawer: false, path: DevPage.path),
+          MenuTextItem(text: 'Ecosystem', inDrawer: false, path: EcoPage.path),
           CustomButton(inDrawer: false, inPage: false, text: 'Get started'),
         ],
       ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web/constants.dart';
 import 'package:flutter_web/presentation/core/buttons/custom_button.dart';
 import 'package:flutter_web/presentation/core/menu/widgets/menu_item.dart';
+import 'package:flutter_web/presentation/devpage/dev_page.dart';
+import 'package:flutter_web/presentation/ecopage/eco_page.dart';
 
 import 'flutter_home_logo.dart';
 
@@ -34,13 +36,15 @@ class CustomDrawer extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 40),
-                const MenuTextItem(text: 'Docs', inDrawer: true),
+                const MenuTextItem(text: 'Docs', inDrawer: true, path: ''),
                 const SizedBox(height: 20),
-                const MenuTextItem(text: 'Showcase', inDrawer: true),
+                const MenuTextItem(text: 'Showcase', inDrawer: true, path: ''),
                 const SizedBox(height: 20),
-                const MenuTextItem(text: 'Development', inDrawer: true),
+                const MenuTextItem(
+                    text: 'Development', inDrawer: true, path: DevPage.path),
                 const SizedBox(height: 20),
-                const MenuTextItem(text: 'Ecosystem', inDrawer: true),
+                const MenuTextItem(
+                    text: 'Ecosystem', inDrawer: true, path: EcoPage.path),
               ],
             ),
             Column(

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web/constants.dart';
+import 'package:routemaster/routemaster.dart';
 
 class MenuTextItem extends StatelessWidget {
+  final String path;
   final String text;
   final bool inDrawer;
-  const MenuTextItem({Key? key, required this.text, required this.inDrawer})
+  const MenuTextItem(
+      {Key? key,
+      required this.text,
+      required this.inDrawer,
+      required this.path})
       : super(key: key);
 
   @override
@@ -12,7 +18,7 @@ class MenuTextItem extends StatelessWidget {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: () => print('text tapped'),
+        onTap: () => Routemaster.of(context).push(path),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(

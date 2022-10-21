@@ -5,13 +5,15 @@ import 'package:flutter_web/presentation/homepage/widgets/developer_experience.d
 import 'package:flutter_web/presentation/homepage/widgets/multi_platform.dart';
 
 class HomePage extends StatelessWidget {
+  static const String path = '/home';
+
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<Widget> partBlocks = [
       const CenteredConstrainedWrapper(child: MultiPlatform()),
-      const SizedBox(height: 60),
+      const SizedBox(height: 20),
       const CenteredConstrainedWrapper(child: DeveloperExperience()),
     ];
 
