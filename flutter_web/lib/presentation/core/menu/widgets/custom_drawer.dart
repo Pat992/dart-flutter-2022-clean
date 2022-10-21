@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web/constants.dart';
-import 'package:flutter_web/presentation/core/buttons/get_started_button.dart';
+import 'package:flutter_web/presentation/core/buttons/custom_button.dart';
 import 'package:flutter_web/presentation/core/menu/widgets/menu_item.dart';
 
 import 'flutter_home_logo.dart';
@@ -46,7 +46,8 @@ class CustomDrawer extends StatelessWidget {
             Column(
               children: const <Widget>[
                 Spacer(),
-                GetStartedButton(inDrawer: true),
+                CustomButton(
+                    inDrawer: true, inPage: false, text: 'Get started'),
                 SizedBox(height: 20),
               ],
             ),

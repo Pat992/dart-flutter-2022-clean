@@ -13,6 +13,7 @@ class PageTemplate extends StatelessWidget {
     final responsiveValue = ResponsiveWrapper.of(context);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: responsiveValue.isSmallerThan(DESKTOP)
           ? const PreferredSize(
               preferredSize: Size(double.infinity, 60),

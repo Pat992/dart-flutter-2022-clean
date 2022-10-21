@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web/presentation/core/buttons/get_started_button.dart';
+import 'package:flutter_web/presentation/core/buttons/custom_button.dart';
 import 'package:flutter_web/presentation/core/menu/widgets/flutter_home_logo.dart';
 import 'package:flutter_web/presentation/core/menu/widgets/menu_item.dart';
 
@@ -30,7 +30,7 @@ class MenuBar extends StatelessWidget {
           MenuTextItem(text: 'Showcase', inDrawer: false),
           MenuTextItem(text: 'Development', inDrawer: false),
           MenuTextItem(text: 'Ecosystem', inDrawer: false),
-          GetStartedButton(inDrawer: false),
+          CustomButton(inDrawer: false, inPage: false, text: 'Get started'),
         ],
       ),
     );
