@@ -5,20 +5,22 @@ class CustomButton extends StatelessWidget {
   final bool inDrawer;
   final bool inPage;
   final String text;
+  final Function callback;
 
-  const CustomButton(
-      {Key? key,
-      required this.inDrawer,
-      required this.text,
-      required this.inPage})
-      : super(key: key);
+  const CustomButton({
+    Key? key,
+    required this.inDrawer,
+    required this.text,
+    required this.inPage,
+    required this.callback,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: () => print('button pressed'),
+        onTap: () => callback(),
         child: Material(
           elevation: inPage ? 0 : 6,
           borderRadius: BorderRadius.circular(20),

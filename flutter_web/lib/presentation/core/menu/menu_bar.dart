@@ -25,15 +25,20 @@ class MenuBar extends StatelessWidget {
         ],
       ),
       child: Row(
-        children: const <Widget>[
-          FlutterHomeLogo(),
-          Spacer(),
-          MenuTextItem(text: 'Docs', inDrawer: false, path: ''),
-          MenuTextItem(text: 'Showcase', inDrawer: false, path: ''),
-          MenuTextItem(
+        children: <Widget>[
+          const FlutterHomeLogo(),
+          const Spacer(),
+          const MenuTextItem(text: 'Docs', inDrawer: false, path: ''),
+          const MenuTextItem(text: 'Showcase', inDrawer: false, path: ''),
+          const MenuTextItem(
               text: 'Development', inDrawer: false, path: DevPage.path),
-          MenuTextItem(text: 'Ecosystem', inDrawer: false, path: EcoPage.path),
-          CustomButton(inDrawer: false, inPage: false, text: 'Get started'),
+          const MenuTextItem(
+              text: 'Ecosystem', inDrawer: false, path: EcoPage.path),
+          CustomButton(
+              inDrawer: false,
+              inPage: false,
+              text: 'Get started',
+              callback: () {}),
         ],
       ),
     );

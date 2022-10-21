@@ -70,11 +70,12 @@ class DeveloperExperience extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 25),
-                  const IntrinsicWidth(
+                  IntrinsicWidth(
                     child: CustomButton(
                       inDrawer: false,
                       inPage: true,
                       text: 'Flutter for developers',
+                      callback: () {},
                     ),
                   ),
                 ],

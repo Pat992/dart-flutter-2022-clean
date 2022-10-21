@@ -48,11 +48,14 @@ class CustomDrawer extends StatelessWidget {
               ],
             ),
             Column(
-              children: const <Widget>[
-                Spacer(),
+              children: <Widget>[
+                const Spacer(),
                 CustomButton(
-                    inDrawer: true, inPage: false, text: 'Get started'),
-                SizedBox(height: 20),
+                    inDrawer: true,
+                    inPage: false,
+                    text: 'Get started',
+                    callback: () {}),
+                const SizedBox(height: 20),
               ],
             ),
           ],
