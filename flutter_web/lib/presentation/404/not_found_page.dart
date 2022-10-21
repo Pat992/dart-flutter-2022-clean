@@ -4,11 +4,10 @@ import 'package:flutter_web/presentation/core/buttons/custom_button.dart';
 import 'package:flutter_web/presentation/core/page_wrapper/centered_constrained_wrapper.dart';
 import 'package:flutter_web/presentation/core/page_wrapper/page_template.dart';
 import 'package:flutter_web/presentation/homepage/home_page.dart';
-import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:routemaster/routemaster.dart';
 
-class Page404 extends StatelessWidget {
-  const Page404({Key? key}) : super(key: key);
+class NotFoundPage extends StatelessWidget {
+  const NotFoundPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
